@@ -50,6 +50,16 @@
         const iframe = document.querySelector('iframe')
         const contWindow = iframe.contentWindow
 
+        const testGameStats = {
+          winDistribution: [0, 1, 0, 0, 1, 0, 0],
+          gamesFailed: 0,
+          currentStreak: 100,
+          bestStreak: 94,
+          totalGames: 2,
+          successRate: 100,
+        }
+        localStorage.setItem('gameStats', testGameStats)
+
         const data = {
           gameStats: localStorage.getItem('gameStats'),
         }
