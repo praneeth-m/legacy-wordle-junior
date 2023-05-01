@@ -2,14 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <meta name="description" content="Legacy Wordle Junior Site" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -24,7 +19,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Wordle Junior - Legacy</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -40,35 +35,27 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <!-- Code to move game stats from WJ to wordemy -->
-    <iframe
-      title="gamesrow"
-      src="https://gamesrow.com"
-      style="display: none"
-    ></iframe>
     <script>
       window.addEventListener('load', () => {
-        const iframe = document.querySelector('iframe')
-        const contWindow = iframe.contentWindow
+        try {
+          const gameStats = JSON.parse(
+            window.localStorage.getItem('gameStats') ?? ''
+          )
+          const data = {
+            gameStats,
+          }
+          const encodedData = btoa(data)
 
-        const testGameStats = {
-          winDistribution: [0, 1, 0, 0, 1, 0, 0],
-          gamesFailed: 0,
-          currentStreak: 150,
-          bestStreak: 194,
-          totalGames: 2,
-          successRate: 200,
+          //redirect the user to gamesrow and set the appropriate query params
+          window.location.replace(
+            `https://gamesrow.com/wordemy?redirected=true&gameStats=${encodedData}`
+          )
+        } catch {
+          // redirect without the game stats
+          window.location.replace(
+            `https://gamesrow.com/wordemy?redirected=true`
+          )
         }
-
-        const data = {
-          gameStats: testGameStats,
-        }
-        // contWindow.postMessage(JSON.stringify(data), '*')
-        const encodedData = btoa(data)
-
-        // After posting the localStorage value to iframe, redirect the user to gamesrow
-        window.location.replace(
-          `https://gamesrow.com/wordemy?redirected=true&gameStats=${encodedData}`
-        )
       })
     </script>
   </body>
