@@ -47,16 +47,16 @@
     ></iframe>
     <script>
       window.addEventListener('load', () => {
-        console.log('window loaded')
         const iframe = document.querySelector('iframe')
         const contWindow = iframe.contentWindow
 
         const data = {
-          gameStats: 'My game stats from source website',
+          gameStats: localStorage.getItem('gameStats'),
         }
-        console.log('posting to gamesrow')
         contWindow.postMessage(JSON.stringify(data), '*')
-        console.log('posted')
+
+        // After posting the localStorage value to iframe, redirect the user to gamesrow
+        window.location.replace('https://gamesrow.com/wordemy')
       })
     </script>
   </body>
