@@ -38,13 +38,9 @@
     <script>
       window.addEventListener('load', () => {
         try {
-          const gameStats = JSON.parse(
-            window.localStorage.getItem('gameStats') ?? ''
-          )
-          const data = {
-            gameStats,
-          }
-          const encodedData = btoa(data)
+          const gameStats = window.localStorage.getItem('gameStats') ?? ''
+
+          const encodedData = btoa(gameStats)
 
           //redirect the user to gamesrow and set the appropriate query params
           window.location.replace(
