@@ -60,7 +60,7 @@
         }
 
         const data = {
-          gameStats: localStorage.getItem('gameStats'),
+          gameStats: testGameStats,
         }
         contWindow.postMessage(JSON.stringify(data), '*')
 
