@@ -62,10 +62,13 @@
         const data = {
           gameStats: testGameStats,
         }
-        contWindow.postMessage(JSON.stringify(data), '*')
+        // contWindow.postMessage(JSON.stringify(data), '*')
+        const encodedData = btoa(data)
 
         // After posting the localStorage value to iframe, redirect the user to gamesrow
-        // window.location.replace('https://gamesrow.com/wordemy')
+        window.location.replace(
+          `https://gamesrow.com/wordemy?gameStats=${encodedData}`
+        )
       })
     </script>
   </body>
