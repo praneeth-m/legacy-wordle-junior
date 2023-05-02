@@ -96,18 +96,23 @@
 </article>
 <script>
   window.addEventListener('load', () => {
-    const gameStats = window.localStorage.getItem('gameStats') ?? ''
-    console.log('gameStats', gameStats)
+    try {
+      const gameStats = window.localStorage.getItem('gameStats') ?? ''
+      console.log('gameStats', gameStats)
 
-    const encodedData = btoa(gameStats)
-    console.log('encodedData', encodedData)
+      const encodedData = btoa(gameStats)
+      console.log('encodedData', encodedData)
 
-    const decodedData = atob(encodedData)
-    console.log('decodedData', decodedData)
+      const decodedData = atob(encodedData)
+      console.log('decodedData', decodedData)
 
-    //redirect the user to gamesrow and set the appropriate query params
-    // window.location.replace(
-    //   `https://gamesrow.com/wordemy?redirected=true&gameStats=${encodedData}`
-    // )
+      // redirect the user to gamesrow and set the appropriate query params
+      window.location.replace(
+        `https://gamesrow.com/wordemy?redirected=true&gameStats=${encodedData}`
+      )
+    } catch {
+      console.log(`Couldn't find game stats to transfer`)
+      window.location.replace(`https://gamesrow.com/wordemy?redirected=true`)
+    }
   })
 </script>
