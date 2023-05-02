@@ -107,12 +107,12 @@
       console.log('decodedData', decodedData)
 
       // redirect the user to gamesrow and set the appropriate query params
-      // window.location.replace(
-      //   `https://gamesrow.com/wordemy?redirected=true&gameStats=${encodedData}`
-      // )
+      window.location.replace(
+        `https://gamesrow.com/wordemy?redirected=true&gameStats=${encodedData}`
+      )
     } catch {
       console.log(`Couldn't find game stats to transfer`)
-      // window.location.replace(`https://gamesrow.com/wordemy?redirected=true`)
+      window.location.replace(`https://gamesrow.com/wordemy?redirected=true`)
     }
   })
 </script>
